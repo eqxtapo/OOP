@@ -1,7 +1,7 @@
 from src.main import Category
 
 
-def test_main(product_samsung, product_iphone, product_xiaomi):
+def test_main_product(product_samsung, product_iphone, product_xiaomi):
     assert product_samsung.name == "Samsung Galaxy S23 Ultra"
     assert product_samsung.description == "256GB, Серый цвет, 200MP камера"
     assert product_samsung.price == 180000.0
@@ -18,19 +18,18 @@ def test_main(product_samsung, product_iphone, product_xiaomi):
     assert product_xiaomi.quantity == 14
 
 
-def test_main_category(category1, category2):
-    assert category1.name == "Смартфоны"
+def test_main_category(category_phones, category_tv):
+    assert category_phones.name == "Смартфоны"
     assert (
-        category1.description
+        category_phones.description
         == "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни"
     )
-    assert category1.products == [1, 2, 3]
-    assert Category.category_count == 2
-    assert Category.product_count == 5
-
-    assert category2.name == "Телевизоры"
+    assert len(category_phones.products) == 3
+    assert category_tv.name == "Телевизоры"
     assert (
-        category2.description
+        category_tv.description
         == "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником"
     )
-    assert category2.products == [4, 5]
+    assert len(category_tv.products) == 1
+    assert Category.category_count == 2
+    assert Category.product_count == 4
