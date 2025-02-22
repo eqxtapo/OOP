@@ -27,3 +27,8 @@ pytest-cov = "^6.0.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+enable_error_code = ["ignore-without-code"]
+show_error_codes = true
+warn_unused_ignores = true
