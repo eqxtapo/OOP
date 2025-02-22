@@ -21,7 +21,7 @@ class Product:
         quantity = new_product["quantity"]
         return cls(name, description, price, quantity)
 
-    @property
+    @property  # type: ignore [no-redef]
     def price(self):
         return self.__price
 
@@ -48,14 +48,15 @@ class Category:
         Category.product_count += len(products)
 
     def add_product(self, product: Product) -> Any:
-        self.__products.append(product)
-        Category.product_count += 1
+        if issubclass(Category, Product):
+            self.__products.append(product)
+            Category.product_count += 1
 
     @property
     def product_list(self):
         return self.__products
 
-    @property
+    @property  # type: ignore [no-redef]
     def products(self):
         product_str = ""
         for product in self.__products:
