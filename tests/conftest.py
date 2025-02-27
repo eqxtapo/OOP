@@ -1,6 +1,7 @@
 import pytest
 
-from src.main import Category, Product
+from src.category import Category
+from src.product import Product
 
 
 @pytest.fixture()
@@ -18,6 +19,11 @@ def product_iphone():
 @pytest.fixture()
 def product_xiaomi():
     return Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+
+
+@pytest.fixture()
+def product_test():
+    return Product("test", "test", 123.0, 1)
 
 
 @pytest.fixture()

@@ -1,64 +1,25 @@
-from typing import Any
+from src.category import Category
+from src.product import Product
 
+if __name__ == '__main__':
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
 
-class Product:
-    name: str
-    description: str
-    price: float
-    quantity: int
+    print(str(product1))
+    print(str(product2))
+    print(str(product3))
 
-    def __init__(self, name, description, price, quantity):
-        self.name = name
-        self.description = description
-        self.__price = price
-        self.quantity = quantity
+    category1 = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        [product1, product2, product3]
+    )
 
-    @classmethod
-    def new_product(cls, new_product: dict):
-        name = new_product["name"]
-        description = new_product["description"]
-        price = new_product["price"]
-        quantity = new_product["quantity"]
-        return cls(name, description, price, quantity)
+    print(str(category1))
 
-    @property  # type: ignore [no-redef]
-    def price(self):
-        return self.__price
+    print(category1.products)
 
-    @price.setter
-    def price(self, cost):
-        if cost <= 0:
-            print("Цена не должна быть нулевая или отрицательная")
-        else:
-            self.__price = cost
-
-
-class Category:
-    name: str
-    description: str
-    products: list
-    category_count = 0
-    product_count = 0
-
-    def __init__(self, name, description, products):
-        self.name = name
-        self.description = description
-        self.__products = products
-        Category.category_count += 1
-        Category.product_count += len(products)
-
-    def add_product(self, product: Product) -> Any:
-        if issubclass(Category, Product):
-            self.__products.append(product)
-            Category.product_count += 1
-
-    @property
-    def product_list(self):
-        return self.__products
-
-    @property  # type: ignore [no-redef]
-    def products(self):
-        product_str = ""
-        for product in self.__products:
-            product_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
-        return product_str
+    print(product1 + product2)
+    print(product1 + product3)
+    print(product2 + product3)
