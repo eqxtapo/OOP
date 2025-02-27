@@ -47,6 +47,7 @@ def test_product_add(product_samsung, product_iphone, product_xiaomi):
     assert product_samsung + product_xiaomi == 1334000
     assert product_xiaomi + product_iphone == 2114000
 
-def test_product_add(first_smartphone, grass):
+
+def test_fail_product_add(first_smartphone, grass):
     with pytest.raises(TypeError):
         assert first_smartphone + grass
