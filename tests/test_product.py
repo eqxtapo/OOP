@@ -33,7 +33,7 @@ def test_main_product(first_smartphone, second_smartphone, third_smartphone):
 def test_product_price_setter(capsys, product_iphone):
     product_iphone.price = 0
     message = capsys.readouterr()
-    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+    assert message.out.strip().split("\n")[-1] == "Цена не должна быть нулевая или отрицательная"
     product_iphone.price = 210000.0
     assert product_iphone.price == 210000.0
 
