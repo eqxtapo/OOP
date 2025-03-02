@@ -14,7 +14,9 @@ class Product:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        return (self.quantity * self.__price) + (other.quantity * other.__price)
+        if type(other) is self.__class__:
+            return (self.quantity * self.__price) + (other.quantity * other.__price)
+        raise TypeError
 
     @classmethod
     def new_product(cls, new_product: dict):
@@ -34,3 +36,31 @@ class Product:
             print("Цена не должна быть нулевая или отрицательная")
         else:
             self.__price = cost
+
+
+class Smartphone(Product):
+    efficiency: float
+    model: str
+    memory: int
+    color: str
+
+    def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    country: str
+    germination_period: str
+    color: str
+
+    def __init__(
+        self, name, description, price, quantity, country, germination_period, color
+    ):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color

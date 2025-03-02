@@ -1,18 +1,33 @@
-def test_main_product(product_samsung, product_iphone, product_xiaomi):
-    assert product_samsung.name == "Samsung Galaxy S23 Ultra"
-    assert product_samsung.description == "256GB, Серый цвет, 200MP камера"
-    assert product_samsung.price == 180000.0
-    assert product_samsung.quantity == 5
+import pytest
 
-    assert product_iphone.name == "Iphone 15"
-    assert product_iphone.description == "512GB, Gray space"
-    assert product_iphone.price == 210000.0
-    assert product_iphone.quantity == 8
 
-    assert product_xiaomi.name == "Xiaomi Redmi Note 11"
-    assert product_xiaomi.description == "1024GB, Синий"
-    assert product_xiaomi.price == 31000.0
-    assert product_xiaomi.quantity == 14
+def test_main_product(first_smartphone, second_smartphone, third_smartphone):
+    assert first_smartphone.name == "Samsung Galaxy S23 Ultra"
+    assert first_smartphone.description == "256GB, Серый цвет, 200MP камера"
+    assert first_smartphone.price == 180000.0
+    assert first_smartphone.quantity == 5
+    assert first_smartphone.efficiency == 95.5
+    assert first_smartphone.model == "S23 Ultra"
+    assert first_smartphone.memory == 256
+    assert first_smartphone.color == "Серый"
+
+    assert second_smartphone.name == "Iphone 15"
+    assert second_smartphone.description == "512GB, Gray space"
+    assert second_smartphone.price == 210000.0
+    assert second_smartphone.quantity == 8
+    assert second_smartphone.efficiency == 98.2
+    assert second_smartphone.model == "15"
+    assert second_smartphone.memory == 512
+    assert second_smartphone.color == "Gray space"
+
+    assert third_smartphone.name == "Xiaomi Redmi Note 11"
+    assert third_smartphone.description == "1024GB, Синий"
+    assert third_smartphone.price == 31000.0
+    assert third_smartphone.quantity == 14
+    assert third_smartphone.efficiency == 90.3
+    assert third_smartphone.model == "Note 11"
+    assert third_smartphone.memory == 1024
+    assert third_smartphone.color == "Синий"
 
 
 def test_product_price_setter(capsys, product_iphone):
@@ -31,3 +46,8 @@ def test_product_add(product_samsung, product_iphone, product_xiaomi):
     assert product_samsung + product_iphone == 2580000
     assert product_samsung + product_xiaomi == 1334000
     assert product_xiaomi + product_iphone == 2114000
+
+
+def test_fail_product_add(first_smartphone, grass):
+    with pytest.raises(TypeError):
+        assert first_smartphone + grass
