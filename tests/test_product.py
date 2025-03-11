@@ -1,4 +1,5 @@
 import pytest
+
 from src.product import Product
 
 
@@ -52,6 +53,7 @@ def test_product_add(product_samsung, product_iphone, product_xiaomi):
 def test_fail_product_add(first_smartphone, grass):
     with pytest.raises(TypeError):
         assert first_smartphone + grass
+
 
 def test_product_init_zero_quantity():
     with pytest.raises(ValueError):

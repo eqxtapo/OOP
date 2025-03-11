@@ -121,6 +121,7 @@ def grass():
 def product_invalid():
     return Product("Бракованный товар", "Неверное количество", 1000.0, 0)
 
+
 @pytest.fixture
 def category_empty():
     return Category("Пустая категория", "Категория без продуктов", [])
